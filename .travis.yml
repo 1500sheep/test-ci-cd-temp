@@ -13,6 +13,11 @@ cache:
 
 script: "./gradlew clean build"
 
+notifications:
+  email:
+    recipients:
+      - 1500sheep@gmail.com
+
 before_deploy:
   - zip -r ci-cd-temp *
   - mkdir -p deploy
@@ -33,20 +38,15 @@ deploy:
       branch: master
 
   - provider: codedeploy
-      access_key_id: $AWS_ACCESS_KEY
-      secret_access_key: $AWS_SECRET_KEY
-      bucket: test-ci-cd-temp
-      key: ci-cd-temp.zip
-      bundle_type: zip
-      application: ci-cd-temp
-      deployment_group: test-ci-cd-group
-      region: ap-northeast-2
-      wait-until-deployed: true
-      on:
-        repo: 1500sheep/test-ci-cd-temp
-        branch: master
-
-notifications:
-  email:
-    recipients:
-      - 1500sheep@gmail.com
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: test-ci-cd-temp
+    key: ci-cd-temp.zip
+    bundle_type: zip
+    application: ci-cd-temp
+    deployment_group: test-ci-cd-group
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+      repo: 1500sheep/test-ci-cd-temp
+      branch: master
