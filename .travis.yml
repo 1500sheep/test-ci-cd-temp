@@ -39,7 +39,7 @@ deploy:
       key: ci-cd-temp.zip
       bundle_type: zip
       application: ci-cd-temp
-      deployment_group: test-ci-cd-temp-group
+      deployment_group: test-ci-cd-group
       region: ap-northeast-2
       wait-until-deployed: true
       on:
